@@ -1,0 +1,13 @@
+# This file provides instructions for packaging.
+
+@prefix : <http://ontologi.es/doap-deps#>.
+
+`Dist-Inktly-Minty`
+	:runtime-requirement  [ :on "Getopt::ArgvFile 0"^^:CpanId ];
+	:runtime-requirement  [ :on "Path::Tiny 0"^^:CpanId ];
+	:runtime-requirement  [ :on "Software::License 0"^^:CpanId ];
+	:runtime-requirement  [ :on "Text::Template 0"^^:CpanId ];
+	:runtime-requirement  [ :on "URI::Escape 0"^^:CpanId ];
+	:runtime-requirement  [ :on "perl 5.010001"^^:CpanId ];
+	.
+
