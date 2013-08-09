@@ -193,6 +193,10 @@ Dist::Inktly::Minty - create distributions that will use Dist::Inkt
 
   distinkt-mint Local::Example::Useful
 
+=head1 STATUS
+
+Experimental.
+
 =head1 DESCRIPTION
 
 This package provides just one (class) method:
