@@ -16,7 +16,7 @@ GetOptions(\%options,
 	'help|usage|h',
 	'licence_class|l=s',
 	'maker|m=s',
-	'version|v',
+	'version|v=s',
 );
 
 $options{maker} ||= '+Minty';
