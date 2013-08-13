@@ -1,5 +1,11 @@
 # This file acts as the project's changelog.
 
+`Dist-Inktly-Minty 0.002 cpan:TOBYINK`
+	issued  2013-08-13;
+	changeset [
+		item "The `--version` option should accept a string; it is not a boolean."^^Bugfix;
+	].
+
 `Dist-Inktly-Minty 0.001 cpan:TOBYINK`
 	issued  2013-08-09;
 	label   "Initial release".

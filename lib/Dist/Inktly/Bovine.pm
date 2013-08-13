@@ -5,7 +5,7 @@ use warnings;
 package Dist::Inktly::Bovine;
 
 our $AUTHORITY = 'cpan:TOBYINK';
-our $VERSION   = '0.001';
+our $VERSION   = '0.002';
 
 use Text::Template;
 
