@@ -177,6 +177,8 @@ sub create_author_tests
 		for grep { m#^xt/# } $self->_get_template_names;
 	
 	my $xtdir = path("~/perl5/xt");
+	return unless $xtdir->exists;
+
 	$self->_file("xt/" . $_->relative($xtdir))->spew_utf8(scalar $_->slurp)
 		for grep { $_ =~ /\.t$/ } $xtdir->children;
 	
