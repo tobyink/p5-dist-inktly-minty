@@ -305,9 +305,9 @@ MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 COMMENCE dist.ini
 ;;class='Dist::Inkt::Profile::Simple'
 ;;name='{$dist_name}'
-;;abstract='a distribution that does something-or-other'
+;;abstract='{$abstract}'
 ;;author=['{$author->{name}}']
-;;license=['perl_5']
+;;license=['{$licence->meta2_name}']
 
 COMMENCE meta/changes.pret
 # This file acts as the project's changelog.
