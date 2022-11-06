@@ -1,9 +1,15 @@
 # This file acts as the project's changelog.
 
+`Dist-Inktly-Minty 0.004 cpan:TOBYINK`
+	issued  2022-11-06;
+	changeset [
+		item "Fix version numbers in generated makefile.pret files."^^Bugfix;
+	].
+
 `Dist-Inktly-Minty 0.003 cpan:TOBYINK`
 	issued  2022-11-06;
 	changeset [
-		item "Modernize generated distributions."^^Bugfix;
+		item "Modernize generated distributions."^^Update;
 	].
 
 `Dist-Inktly-Minty 0.002 cpan:TOBYINK`
