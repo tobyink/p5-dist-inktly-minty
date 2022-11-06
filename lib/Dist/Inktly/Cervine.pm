@@ -76,7 +76,7 @@ EOF
 @prefix : <http://ontologi.es/doap-deps#>.
 
 `{$dist_name}`
-	:runtime-requirement    [ :on "perl 5.010000"^^:CpanId ];
+	:runtime-requirement    [ :on "perl 5.010001"^^:CpanId ];
 	:runtime-requirement    [ :on "Moose 2.0800"^^:CpanId ];
 	:runtime-requirement    [ :on "Types::Standard 2.000000"^^:CpanId ];
 	:runtime-requirement    [ :on "namespace::autoclean 0.12"^^:CpanId ];

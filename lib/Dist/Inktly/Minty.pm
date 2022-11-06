@@ -374,7 +374,7 @@ COMMENCE meta/makefile.pret
 @prefix : <http://ontologi.es/doap-deps#>.
 
 `{$dist_name}`
-	:runtime-requirement    [ :on "perl 5.010000"^^:CpanId ];
+	:runtime-requirement    [ :on "perl 5.010001"^^:CpanId ];
 	:test-requirement       [ :on "Test2::V0"^^:CpanId ];
 	:test-requirement       [ :on "Test2::Tools::Spec"^^:CpanId ];
 	:test-requirement       [ :on "Test2::Require::AuthorTesting"^^:CpanId ];
