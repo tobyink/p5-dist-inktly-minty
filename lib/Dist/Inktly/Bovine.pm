@@ -79,7 +79,7 @@ EOF
 	:runtime-requirement    [ :on "perl 5.010001"^^:CpanId ];
 	:runtime-requirement    [ :on "Moo 2.000000"^^:CpanId ];
 	:runtime-requirement    [ :on "Types::Standard 2.000000"^^:CpanId ];
-	:runtime-requirement    [ :on "namespace::autoclean"^^:CpanId ];
+	:runtime-requirement    [ :on "namespace::autoclean 0.12"^^:CpanId ];
 	:test-requirement       [ :on "Test2::V0"^^:CpanId ];
 	:test-requirement       [ :on "Test2::Tools::Spec"^^:CpanId ];
 	:test-requirement       [ :on "Test2::Require::AuthorTesting"^^:CpanId ];
