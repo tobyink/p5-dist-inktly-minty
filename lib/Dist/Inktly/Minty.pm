@@ -8,6 +8,7 @@ our $AUTHORITY = 'cpan:TOBYINK';
 our $VERSION   = '0.002';
 
 use Carp;
+use File::chdir;
 use Path::Tiny 'path';
 use Software::License;
 use Text::Template;
@@ -96,6 +97,7 @@ sub create
 	$self->create_metadata;
 	$self->create_tests;
 	$self->create_author_tests;
+	$self->run_then;
 	return $self;
 }
 
@@ -126,6 +128,13 @@ sub set_defaults
 		$self->{module_filename} = 'lib::'.$self->{module_name};
 		$self->{module_filename} =~ s/::/\//g;
 		$self->{module_filename} .= '.pm';
+	}
+	
+	unless ($self->{unit_test_filename})
+	{
+		$self->{unit_test_filename} = $self->{module_filename};
+		$self->{unit_test_filename} =~ s/\.pm$/\.t/;
+		$self->{unit_test_filename} =~ s/lib/t\/unit/;
 	}
 	
 	$self->{copyright}{holder} ||= $self->{author}{name};
@@ -166,6 +175,9 @@ sub create_tests
 	my $self = shift;
 	$self->_file($_)->spew_utf8($self->_fill_in_template($_))
 		for grep { m#^t/# } $self->_get_template_names;
+	mkdir( $self->_file('t/unit') );
+	mkdir( $self->_file('t/integration') );
+	$self->_file( $self->{unit_test_filename} )->spew_utf8( $self->_fill_in_template('unit-test') );
 	return;
 }
 
@@ -183,6 +195,17 @@ sub create_author_tests
 	}
 	
 	return;
+}
+
+sub run_then {
+	my $self = shift;
+	ref $self->{then} or return;
+	my $dir = path(
+		$self->{destination},
+		sprintf('p5-%s', lc($self->{dist_name})),
+	);
+	local $CWD = "$dir";
+	system($_) for @{ $self->{then} };
 }
 
 1;
@@ -284,7 +307,7 @@ our $VERSION   = '{$version}';
 {}=head1 BUGS
 
 Please report any bugs to
-L<http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}>.
+<https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}/issues>.
 
 {}=head1 SEE ALSO
 
@@ -349,7 +372,11 @@ COMMENCE meta/makefile.pret
 @prefix : <http://ontologi.es/doap-deps#>.
 
 `{$dist_name}`
-	:test-requirement       [ :on "Test::More 0.96"^^:CpanId ];
+	:runtime-requirement    [ :on "perl 5.010000"^^:CpanId ];
+	:test-requirement       [ :on "Test2::V0"^^:CpanId ];
+	:test-requirement       [ :on "Test2::Tools::Spec"^^:CpanId ];
+	:test-requirement       [ :on "Test2::Require::AuthorTesting"^^:CpanId ];
+	:test-requirement       [ :on "Test2::Require::Module"^^:CpanId ];
 	:develop-recommendation [ :on "Dist::Inkt 0.001"^^:CpanId ];
 	.
 
@@ -374,8 +401,79 @@ Test that {$module_name} compiles.
 
 use strict;
 use warnings;
-use Test::More;
+use Test2::V0;
 
-use_ok('{$module_name}');
+use {$module_name} ();
+
+pass 'compiles ok';
+
+done_testing;
+
+COMMENCE t/00start.t
+{}=pod
+
+{}=encoding utf-8
+
+{}=head1 PURPOSE
+
+Print version numbers, etc.
+
+{}=head1 AUTHOR
+
+{$author->{name}} E<lt>{$author->{mbox}}E<gt>.
+
+{}=head1 COPYRIGHT AND LICENCE
+
+{$licence->notice}
+
+{}=cut
+
+use Test2::V0;
+
+my @modules = qw(
+	Carp
+);
+
+diag "\n####";
+for my $mod ( sort @modules ) \{
+	eval "require $mod;";
+	diag sprintf( '%-20s %s', $mod, $mod->VERSION );
+\}
+diag "####";
+
+pass;
+
+done_testing;
+
+COMMENCE unit-test
+{}=pod
+
+{}=encoding utf-8
+
+{}=head1 PURPOSE
+
+Unit tests for L<{$module_name}>.
+
+{}=head1 AUTHOR
+
+{$author->{name}} E<lt>{$author->{mbox}}E<gt>.
+
+{}=head1 COPYRIGHT AND LICENCE
+
+{$licence->notice}
+
+{}=cut
+
+use Test2::V0 -target => '{$module_name}';
+use Test2::Tools::Spec;
+use Data::Dumper;
+
+describe "class `$CLASS`" => sub \{
+
+	tests 'blah blah blah' => sub \{
+	
+		pass;
+	\};
+\};
 
 done_testing;

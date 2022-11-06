@@ -4,6 +4,7 @@
 
 `Dist-Inktly-Minty`
 	:runtime-requirement  [ :on "Getopt::ArgvFile 0"^^:CpanId ];
+	:runtime-requirement  [ :on "File::chdir"^^:CpanId ];
 	:runtime-requirement  [ :on "Path::Tiny 0"^^:CpanId ];
 	:runtime-requirement  [ :on "Software::License 0"^^:CpanId ];
 	:runtime-requirement  [ :on "Text::Template 0"^^:CpanId ];
