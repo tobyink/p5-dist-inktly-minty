@@ -151,21 +151,21 @@ sub set_defaults
 sub create_module
 {
 	my $self = shift;
-	$self->_file( $self->{module_filename} )->spew_utf8( $self->_fill_in_template('module') );
+	$self->_file( $self->{module_filename} )->spew( $self->_fill_in_template('module') );
 	return;
 }
 
 sub create_dist_ini
 {
 	my $self = shift;
-	$self->_file('dist.ini')->spew_utf8($self->_fill_in_template('dist.ini'));
+	$self->_file('dist.ini')->spew($self->_fill_in_template('dist.ini'));
 	return;
 }
 
 sub create_metadata
 {
 	my $self = shift;
-	$self->_file($_)->spew_utf8($self->_fill_in_template($_))
+	$self->_file($_)->spew($self->_fill_in_template($_))
 		for grep { m#^meta/# } $self->_get_template_names;
 	return;
 }
@@ -173,11 +173,11 @@ sub create_metadata
 sub create_tests
 {
 	my $self = shift;
-	$self->_file($_)->spew_utf8($self->_fill_in_template($_))
+	$self->_file($_)->spew($self->_fill_in_template($_))
 		for grep { m#^t/# } $self->_get_template_names;
 	mkdir( $self->_file('t/unit') );
 	mkdir( $self->_file('t/integration') );
-	$self->_file( $self->{unit_test_filename} )->spew_utf8( $self->_fill_in_template('unit-test') );
+	$self->_file( $self->{unit_test_filename} )->spew( $self->_fill_in_template('unit-test') );
 	return;
 }
 
@@ -185,12 +185,12 @@ sub create_author_tests
 {
 	my $self = shift;
 	
-	$self->_file($_)->spew_utf8($self->_fill_in_template($_))
+	$self->_file($_)->spew($self->_fill_in_template($_))
 		for grep { m#^xt/# } $self->_get_template_names;
 	
 	my $xtdir = path("~/perl5/xt");
 	if ( $xtdir->exists ) {
-		$self->_file("xt/" . $_->relative($xtdir))->spew_utf8(scalar $_->slurp)
+		$self->_file("xt/" . $_->relative($xtdir))->spew(scalar $_->slurp)
 			for grep { $_ =~ /\.t$/ } $xtdir->children;
 	}
 	
