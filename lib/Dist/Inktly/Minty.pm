@@ -328,7 +328,7 @@ WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
 MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 COMMENCE dist.ini
-;;class='Dist::Inkt::Profile::{uc $author->{cpanid}}'
+;;class='Dist::Inkt::Profile::TOBYINK'
 ;;name='{$dist_name}'
 
 COMMENCE meta/changes.pret
