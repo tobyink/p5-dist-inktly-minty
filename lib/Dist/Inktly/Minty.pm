@@ -177,8 +177,10 @@ sub create_author_tests
 		for grep { m#^xt/# } $self->_get_template_names;
 	
 	my $xtdir = path("~/perl5/xt");
-	$self->_file("xt/" . $_->relative($xtdir))->spew_utf8(scalar $_->slurp)
-		for grep { $_ =~ /\.t$/ } $xtdir->children;
+	if ( $xtdir->exists ) {
+		$self->_file("xt/" . $_->relative($xtdir))->spew_utf8(scalar $_->slurp)
+			for grep { $_ =~ /\.t$/ } $xtdir->children;
+	}
 	
 	return;
 }
@@ -321,8 +323,8 @@ COMMENCE meta/doap.pret
 	:shortdesc            "{$abstract}";
 	:homepage             <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
 	:download-page        <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
-	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}>;
-#	:repository           [ a :GitRepository; :browse <https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}> ];
+	:bug-database         <https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}/issues>;
+	:repository           [ a :GitRepository; :browse <https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}> ];
 	:created              {sprintf('%04d-%02d-%02d', 1900+(localtime)[5], 1+(localtime)[4], (localtime)[3])};
 	:license              <{$licence->url}>;
 	:maintainer           cpan:{uc $author->{cpanid}};
@@ -377,7 +379,3 @@ use Test::More;
 use_ok('{$module_name}');
 
 done_testing;
-
-COMMENCE xt/03meta_uptodate.config
-\{"package":"{$dist_name}"\}
-
