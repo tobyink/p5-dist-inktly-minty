@@ -328,8 +328,11 @@ WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
 MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 COMMENCE dist.ini
-;;class='Dist::Inkt::Profile::{uc $author->{cpanid}}'
+;;class='Dist::Inkt::Profile::Simple'
 ;;name='{$dist_name}'
+;;abstract='{$abstract}'
+;;author=['{$author->{name}}']
+;;license=['{$licence->meta2_name}']
 
 COMMENCE meta/changes.pret
 # This file acts as the project's changelog.
