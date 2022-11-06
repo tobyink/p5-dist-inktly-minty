@@ -224,6 +224,8 @@ Experimental.
 
 =head1 DESCRIPTION
 
+Sets up a new distribution in the style TOBYINK likes.
+
 This package provides just one (class) method:
 
 =over
