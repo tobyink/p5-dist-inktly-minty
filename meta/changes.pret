@@ -1,5 +1,11 @@
 # This file acts as the project's changelog.
 
+`Dist-Inktly-Minty 0.003 cpan:TOBYINK`
+	issued  2022-11-06;
+	changeset [
+		item "Modernize generated distributions."^^Bugfix;
+	].
+
 `Dist-Inktly-Minty 0.002 cpan:TOBYINK`
 	issued  2013-08-13;
 	changeset [
