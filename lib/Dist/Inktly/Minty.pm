@@ -379,6 +379,7 @@ COMMENCE meta/makefile.pret
 	:test-requirement       [ :on "Test2::Tools::Spec"^^:CpanId ];
 	:test-requirement       [ :on "Test2::Require::AuthorTesting"^^:CpanId ];
 	:test-requirement       [ :on "Test2::Require::Module"^^:CpanId ];
+	:test-requirement       [ :on "Test2::Plugin::BailOnFail"^^:CpanId ];
 	:develop-recommendation [ :on "Dist::Inkt 0.001"^^:CpanId ];
 	.
 
@@ -401,9 +402,8 @@ Test that {$module_name} compiles.
 
 {}=cut
 
-use strict;
-use warnings;
 use Test2::V0;
+use Test2::Plugin::BailOnFail;
 
 use {$module_name} ();
 
@@ -434,6 +434,7 @@ use Test2::V0;
 
 my @modules = qw(
 	Carp
+	Test2::V0
 );
 
 diag "\n####";
