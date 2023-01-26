@@ -309,7 +309,7 @@ our $VERSION   = '{$version}';
 {}=head1 BUGS
 
 Please report any bugs to
-<https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}/issues>.
+L<https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}/issues>.
 
 {}=head1 SEE ALSO
 
