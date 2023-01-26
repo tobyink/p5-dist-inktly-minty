@@ -1,5 +1,12 @@
 # This file acts as the project's changelog.
 
+`Dist-Inktly-Minty 0.005 cpan:TOBYINK`
+	issued  2022-11-06;
+	changeset [
+		item "Fix bug tracker links in generated pod."^^Bugfix;
+		item "Use Test2::Plugin::BailOnFail in generated test suite."^^Change;
+	].
+
 `Dist-Inktly-Minty 0.004 cpan:TOBYINK`
 	issued  2022-11-06;
 	changeset [
